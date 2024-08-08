@@ -30,16 +30,14 @@ public static class LoggingServiceConfiguration
             });
 
         // Serilog
-        Log.Logger = new LoggerConfiguration()
+        services.AddSerilog((s, l) => l
             .ReadFrom.Configuration(configuration)
-            //.Enrich.FromLogContext()
-            .Enrich.WithThreadName()
-            .Enrich.WithThreadId()
-            .Enrich.WithMachineName()
-            .Enrich.WithProperty("Enviroment", appsetting.Enviroment)
+            .ReadFrom.Services(s)
+            .Enrich.FromLogContext()
+            .Enrich.WithProperty("Team", "Legion")
             .Enrich.WithProperty("Application", "DepositAPIGateway")
-            .Enrich.WithProperty("Version", appsetting.Version)
-            .CreateLogger();
+            .Enrich.WithProperty("Enviroment", appsetting.Enviroment)
+            .Enrich.WithProperty("Version", appsetting.Version));
 
         services.AddHttpLogging(logging =>
         {
