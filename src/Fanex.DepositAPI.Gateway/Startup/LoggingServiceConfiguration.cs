@@ -34,6 +34,7 @@ public static class LoggingServiceConfiguration
             .ReadFrom.Configuration(configuration)
             .ReadFrom.Services(s)
             .Enrich.FromLogContext()
+            .Enrich.WithMachineName()
             .Enrich.WithProperty("Team", "Legion")
             .Enrich.WithProperty("Application", "DepositAPIGateway")
             .Enrich.WithProperty("Enviroment", appsetting.Enviroment)
