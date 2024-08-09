@@ -32,8 +32,6 @@ app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseCors();
 
-app.UseHttpsRedirection();
-
 app.UseRouting();
 
 app.MapGet("/", () => "Hi, I'm Deposit API Gateway!");
