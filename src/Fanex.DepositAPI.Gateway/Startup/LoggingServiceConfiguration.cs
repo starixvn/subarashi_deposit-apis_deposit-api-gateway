@@ -42,7 +42,7 @@ public static class LoggingServiceConfiguration
 
         services.AddHttpLogging(logging =>
         {
-            logging.LoggingFields = HttpLoggingFields.All;
+            logging.LoggingFields = HttpLoggingFields.All | HttpLoggingFields.RequestQuery;
             logging.RequestHeaders.Add("sec-ch-ua");
             logging.MediaTypeOptions.AddText("application/javascript");
             logging.RequestBodyLogLimit = 4096;
