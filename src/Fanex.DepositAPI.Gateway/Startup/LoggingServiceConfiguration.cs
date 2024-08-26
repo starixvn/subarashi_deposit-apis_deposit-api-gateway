@@ -1,32 +1,33 @@
-﻿using Fanex.DepositAPI.Gateway.Settings;
-using Fanex.Logging;
-using Fanex.Logging.Sentry;
+﻿namespace Fanex.DepositAPI.Gateway.Startup;
+
+using Logging;
+using Logging.Sentry;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sentry;
 using Serilog;
-
-namespace Fanex.DepositAPI.Gateway.Startup;
+using Settings;
+using ILogger = Logging.ILogger;
 
 public static class LoggingServiceConfiguration
 {
     public static IServiceCollection LoggingConfigure(this IServiceCollection services, IConfiguration configuration)
     {
         var sentrySetting = configuration.GetSection(SentrySetting.SettingName).Get<SentrySetting>();
-        var appsetting = configuration.GetSection(AppSetting.SettingName).Get<AppSetting>();
+        var appSetting = configuration.GetSection(AppSetting.SettingName).Get<AppSetting>();
 
         // Sentry
         LogManager
-            .SetDefaultLogCategory(sentrySetting.Enviroment)
+            .SetDefaultLogCategory(sentrySetting.Environment)
             .Use(new List<ILogEngine>
             {
                 new SentryLogging(new SentryEngineOptions
                 {
                     Dsn = new Dsn(sentrySetting.Dsn),
-                    Environment = sentrySetting.Enviroment,
+                    Environment = sentrySetting.Environment,
                     MaxBreadcrumbs = sentrySetting.MaxBreadcrumbs,
-                    SendDefaultPii = sentrySetting.SendDefaultPii,
-                }),
+                    SendDefaultPii = sentrySetting.SendDefaultPii
+                })
             });
 
         // Serilog
@@ -37,8 +38,8 @@ public static class LoggingServiceConfiguration
             .Enrich.WithMachineName()
             .Enrich.WithProperty("Team", "Legion")
             .Enrich.WithProperty("Application", "DepositAPIGateway")
-            .Enrich.WithProperty("Enviroment", appsetting.Enviroment)
-            .Enrich.WithProperty("Version", appsetting.Version));
+            .Enrich.WithProperty("Environment", appSetting.Environment)
+            .Enrich.WithProperty("Version", appSetting.Version));
 
         services.AddHttpLogging(logging =>
         {
@@ -50,7 +51,7 @@ public static class LoggingServiceConfiguration
             logging.CombineLogs = true;
         });
 
-        services.TryAddSingleton<Logging.ILogger, Logging.Logger>();
+        services.TryAddSingleton<ILogger, Logger>();
 
         return services;
     }
