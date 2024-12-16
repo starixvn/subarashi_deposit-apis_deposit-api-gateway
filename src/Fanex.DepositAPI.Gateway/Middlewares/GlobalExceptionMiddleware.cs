@@ -1,29 +1,21 @@
-﻿using System.Net;
-using Fanex.DepositAPI.Gateway.Utils;
+﻿namespace Fanex.DepositAPI.Gateway.Middlewares;
 
-namespace Fanex.DepositAPI.Gateway.Middlewares;
+using System.Net;
+using Logging;
+using Utils;
 
-public class GlobalExceptionMiddleware
+public class GlobalExceptionMiddleware(RequestDelegate next, ILogger logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly Logging.ILogger _logger;
-
-    public GlobalExceptionMiddleware(RequestDelegate next, Logging.ILogger logger)
-    {
-        _next = next;
-        _logger = logger;
-    }
-
     public async Task InvokeAsync(HttpContext context)
     {
         try
         {
-            await _next(context);
+            await next(context);
         }
         catch (Exception exception)
         {
             var message = ErrorMessageUtils.GenerateMessage(exception);
-            _logger.Error(message);
+            await logger.ErrorAsync(message);
 
             context.Response.Clear();
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

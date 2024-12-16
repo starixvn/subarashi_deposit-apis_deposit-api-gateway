@@ -1,6 +1,6 @@
-﻿using System.Net.Http.Headers;
+﻿namespace Fanex.DepositAPI.Gateway.DelegatingHandlers;
 
-namespace Fanex.DepositAPI.Gateway.Handlers;
+using System.Net.Http.Headers;
 
 public class NoGzipDelegatingHandler : DelegatingHandler
 {
