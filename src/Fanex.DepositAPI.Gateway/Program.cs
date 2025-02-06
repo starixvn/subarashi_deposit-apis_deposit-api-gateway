@@ -1,8 +1,7 @@
-using Fanex.DepositAPI.Gateway.Handlers;
+using Fanex.DepositAPI.Gateway.DelegatingHandlers;
 using Fanex.DepositAPI.Gateway.Middlewares;
 using Fanex.DepositAPI.Gateway.Startup;
 using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +14,11 @@ builder.Services
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+    options.AddDefaultPolicy(policyBuilder =>
+        policyBuilder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 });
 
 builder.Services
@@ -26,7 +29,7 @@ var app = builder.Build();
 
 app.UseWhen(
     context => !context.Request.Path.Equals("/") && !context.Request.Path.ToString().Contains("."),
-    builder => builder.UseHttpLogging());
+    config => config.UseHttpLogging());
 
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
@@ -38,8 +41,6 @@ app.MapGet("/", () => "Hi, I'm Deposit API Gateway!");
 
 app.UseEndpoints(_ => { });
 
-app.UseMiddleware<ApiKeyMiddleware>();
-
-app.UseOcelot().Wait();
+app.UseOcelot(builder.Configuration);
 
 app.Run();

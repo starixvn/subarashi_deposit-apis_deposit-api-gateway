@@ -1,7 +1,6 @@
 ﻿namespace Fanex.DepositAPI.Gateway.Utils;
 
 using System.Text;
-using Microsoft.AspNetCore.Http;
 
 public static class ErrorMessageUtils
 {
@@ -50,22 +49,14 @@ public static class ErrorMessageUtils
         }
     }
 
-    private static string GetParameters(IDictionary<string, object> parameters)
-       => parameters?.Count > 0
-           ? parameters.Select(parameter => $"{parameter.Key}={parameter.Value}")
-                    .Aggregate((firstPair, secondPair) => $"{firstPair};{secondPair}")
-           : string.Empty;
-
     private static IDictionary<string, object> GetRequestInfo(HttpContext context)
     {
         var request = context.Request;
-        return request == null
-                ? new Dictionary<string, object>()
-                : new Dictionary<string, object>
-                {
-                    [nameof(request.Host)] = request.Host,
-                    [nameof(request.Path)] = request.Path,
-                    ["Remote IP"] = context.Connection?.RemoteIpAddress
-                };
+        return new Dictionary<string, object>
+        {
+            [nameof(request.Host)] = request.Host,
+            [nameof(request.Path)] = request.Path,
+            ["Remote IP"] = context.Connection?.RemoteIpAddress
+        };
     }
 }

@@ -1,6 +1,6 @@
-﻿using Fanex.DepositAPI.Gateway.Settings;
+﻿namespace Fanex.DepositAPI.Gateway.Startup;
 
-namespace Fanex.DepositAPI.Gateway.Startup;
+using Settings;
 
 public static class DependencyInjection
 {
