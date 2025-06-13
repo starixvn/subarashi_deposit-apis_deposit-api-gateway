@@ -1,12 +1,16 @@
 ﻿namespace Fanex.DepositAPI.Gateway.Startup;
 
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Ocelot.Middleware;
 
 public static class OcelotMiddlewareConfiguration
 {
     public static IApplicationBuilder UseOcelot(this IApplicationBuilder app, IConfiguration configuration)
     {
+        var pathBase = configuration["PathBase"];
+
         var allApiKeys = configuration
             .GetSection("ApiKeys")
             .GetChildren()
@@ -56,6 +60,74 @@ public static class OcelotMiddlewareConfiguration
                 await next.Invoke();
             }
         };
+
+        app.UseSwaggerForOcelotUI(opt =>
+        {
+            if (!string.IsNullOrEmpty(pathBase))
+            {
+                opt.DownstreamSwaggerEndPointBasePath = $"{pathBase}/swagger/docs";
+            }
+
+            opt.PathToSwaggerGenerator = "/swagger/docs";
+
+            opt.ReConfigureUpstreamSwaggerJson = (context, swaggerJson) =>
+            {
+                var swagger = JObject.Parse(swaggerJson);
+
+                var components = swagger["components"] as JObject;
+                if (components == null)
+                {
+                    components = new JObject();
+                    swagger["components"] = components;
+                }
+
+                var securitySchemes = components["securitySchemes"] as JObject;
+                if (securitySchemes == null)
+                {
+                    securitySchemes = new JObject();
+                    components["securitySchemes"] = securitySchemes;
+                }
+
+                if (securitySchemes["ApiKey"] == null)
+                {
+                    securitySchemes["ApiKey"] = JObject.Parse(@"{
+                    'type': 'apiKey',
+                    'name': 'ApiKey',
+                    'in': 'header',
+                    'description': 'Enter your `API Key`'
+                }");
+                }
+
+                var securityRequirements = swagger["security"] as JArray;
+                if (securityRequirements == null)
+                {
+                    securityRequirements = new JArray();
+                    swagger["security"] = securityRequirements;
+                }
+
+                var apiKeyRequirement = JObject.Parse(@"{ 'ApiKey': [] }");
+
+                if (!securityRequirements.Any(item => JToken.DeepEquals(item, apiKeyRequirement)))
+                {
+                    securityRequirements.Add(apiKeyRequirement);
+                }
+
+                var servers = swagger["servers"] as JArray;
+                if (servers == null)
+                {
+                    servers = new JArray();
+                    swagger["servers"] = servers;
+                }
+
+                var request = context.Request;
+                var ocelotBaseUrl = $"{request.Scheme}://{request.Host}{pathBase}";
+
+                servers.Clear();
+                servers.Add(JObject.Parse($@"{{ 'url': '{ocelotBaseUrl}' }}"));
+
+                return swagger.ToString(Formatting.Indented);
+            };
+        });
 
         app.UseOcelot(ocelotPipelineConfig).Wait();
         return app;

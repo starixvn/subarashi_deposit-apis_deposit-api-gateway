@@ -36,19 +36,20 @@ public static class LoggingServiceConfiguration
             .ReadFrom.Services(s)
             .Enrich.FromLogContext()
             .Enrich.WithMachineName()
-            .Enrich.WithProperty("Team", "Legion")
-            .Enrich.WithProperty("Application", "DepositAPIGateway")
+            .Enrich.WithProperty("Team", "Subarashi")
+            .Enrich.WithProperty("Application", "Deposit API Gateway")
             .Enrich.WithProperty("Environment", appSetting.Environment)
-            .Enrich.WithProperty("Version", appSetting.Version));
+            .Enrich.WithProperty("Version", appSetting.Version)
+            .Filter.ByExcluding("RequestPath like '/favicon.ico%' or RequestPath like '/swagger%' or RequestPath like '/whoami%'"));
 
-        services.AddHttpLogging(logging =>
+        services.AddHttpLogging(options =>
         {
-            logging.LoggingFields = HttpLoggingFields.All | HttpLoggingFields.RequestQuery;
-            logging.RequestHeaders.Add("sec-ch-ua");
-            logging.MediaTypeOptions.AddText("application/javascript");
-            logging.RequestBodyLogLimit = 4096;
-            logging.ResponseBodyLogLimit = 4096;
-            logging.CombineLogs = true;
+            options.LoggingFields = HttpLoggingFields.All | HttpLoggingFields.RequestQuery;
+            options.RequestHeaders.Add("sec-ch-ua");
+            options.MediaTypeOptions.AddText("application/javascript");
+            //options.RequestBodyLogLimit = 4096;
+            options.ResponseBodyLogLimit = 4096;
+            options.CombineLogs = true;
         });
 
         services.TryAddSingleton<ILogger, Logger>();

@@ -1,0 +1,137 @@
+{
+    "Routes": [
+        // Deposit API
+        {
+            "Key": "deposit-api",
+            "UpstreamPathTemplate": "/api/deposit/tickets/{refNo}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/tickets/{refNo}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        },
+
+        // Deposit Setting API
+        {
+            "Key": "deposit-setting-api",
+            "UpstreamPathTemplate": "/api/deposit/products/{everything}",
+            "UpstreamHttpMethod": [ "GET" ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/products/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_setting_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        },
+        {
+            "Key": "deposit-setting-api",
+            "UpstreamPathTemplate": "/api/deposit/betsettings",
+            "UpstreamHttpMethod": [ "GET" ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/betsettings",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_setting_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        },
+
+        // Deposit Licensee API
+        {
+            "Key": "deposit-licensee-api",
+            "UpstreamPathTemplate": "/api/site-builder/{everything}",
+            "UpstreamHttpMethod": [
+                "POST",
+                "PUT"
+            ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_licensee_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        },
+
+        // Deposit Player API
+        {
+            "Key": "deposit-player-api",
+            "UpstreamPathTemplate": "/api/deposit/players",
+            "UpstreamHttpMethod": [
+                "POST"
+            ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/players",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_player_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        },
+        {
+            "Key": "deposit-player-api",
+            "UpstreamPathTemplate": "/api/deposit/players/{everything}",
+            "UpstreamHttpMethod": [
+                "PUT"
+            ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/players/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_player_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        },
+        {
+            "Key": "deposit-player-api",
+            "UpstreamPathTemplate": "/api/deposit/sabaids/{everything}",
+            "UpstreamHttpMethod": [
+                "POST"
+            ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/sabaids/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_player_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        },
+        {
+            "Key": "deposit-player-api",
+            "UpstreamPathTemplate": "/api/deposit/shadowaccounts/{everything}",
+            "UpstreamHttpMethod": [
+                "POST"
+            ],
+            "Priority": 0,
+            "DownstreamPathTemplate": "/api/shadowaccounts/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "licensee_deposit_player_api_UAT",
+                    "Port": 5000
+                }
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "https://deposit-api-gw.starixuat.com/main"
+    }
+}
