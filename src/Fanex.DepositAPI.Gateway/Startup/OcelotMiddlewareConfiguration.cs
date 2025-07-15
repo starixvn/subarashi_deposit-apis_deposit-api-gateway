@@ -4,6 +4,7 @@ using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ocelot.Middleware;
+using Settings;
 
 public static class OcelotMiddlewareConfiguration
 {
@@ -61,73 +62,77 @@ public static class OcelotMiddlewareConfiguration
             }
         };
 
-        app.UseSwaggerForOcelotUI(opt =>
+        var appSetting = configuration.GetSection(AppSetting.SettingName).Get<AppSetting>();
+        if (appSetting.UseSwagger)
         {
-            if (!string.IsNullOrEmpty(pathBase))
+            app.UseSwaggerForOcelotUI(opt =>
             {
-                opt.DownstreamSwaggerEndPointBasePath = $"{pathBase}/swagger/docs";
-            }
-
-            opt.PathToSwaggerGenerator = "/swagger/docs";
-
-            opt.ReConfigureUpstreamSwaggerJson = (context, swaggerJson) =>
-            {
-                var swagger = JObject.Parse(swaggerJson);
-
-                var components = swagger["components"] as JObject;
-                if (components == null)
+                if (!string.IsNullOrEmpty(pathBase))
                 {
-                    components = new JObject();
-                    swagger["components"] = components;
+                    opt.DownstreamSwaggerEndPointBasePath = $"{pathBase}/swagger/docs";
                 }
 
-                var securitySchemes = components["securitySchemes"] as JObject;
-                if (securitySchemes == null)
-                {
-                    securitySchemes = new JObject();
-                    components["securitySchemes"] = securitySchemes;
-                }
+                opt.PathToSwaggerGenerator = "/swagger/docs";
 
-                if (securitySchemes["ApiKey"] == null)
+                opt.ReConfigureUpstreamSwaggerJson = (context, swaggerJson) =>
                 {
-                    securitySchemes["ApiKey"] = JObject.Parse(@"{
+                    var swagger = JObject.Parse(swaggerJson);
+
+                    var components = swagger["components"] as JObject;
+                    if (components == null)
+                    {
+                        components = new JObject();
+                        swagger["components"] = components;
+                    }
+
+                    var securitySchemes = components["securitySchemes"] as JObject;
+                    if (securitySchemes == null)
+                    {
+                        securitySchemes = new JObject();
+                        components["securitySchemes"] = securitySchemes;
+                    }
+
+                    if (securitySchemes["ApiKey"] == null)
+                    {
+                        securitySchemes["ApiKey"] = JObject.Parse(@"{
                     'type': 'apiKey',
                     'name': 'ApiKey',
                     'in': 'header',
                     'description': 'Enter your `API Key`'
                 }");
-                }
+                    }
 
-                var securityRequirements = swagger["security"] as JArray;
-                if (securityRequirements == null)
-                {
-                    securityRequirements = new JArray();
-                    swagger["security"] = securityRequirements;
-                }
+                    var securityRequirements = swagger["security"] as JArray;
+                    if (securityRequirements == null)
+                    {
+                        securityRequirements = new JArray();
+                        swagger["security"] = securityRequirements;
+                    }
 
-                var apiKeyRequirement = JObject.Parse(@"{ 'ApiKey': [] }");
+                    var apiKeyRequirement = JObject.Parse(@"{ 'ApiKey': [] }");
 
-                if (!securityRequirements.Any(item => JToken.DeepEquals(item, apiKeyRequirement)))
-                {
-                    securityRequirements.Add(apiKeyRequirement);
-                }
+                    if (!securityRequirements.Any(item => JToken.DeepEquals(item, apiKeyRequirement)))
+                    {
+                        securityRequirements.Add(apiKeyRequirement);
+                    }
 
-                var servers = swagger["servers"] as JArray;
-                if (servers == null)
-                {
-                    servers = new JArray();
-                    swagger["servers"] = servers;
-                }
+                    var servers = swagger["servers"] as JArray;
+                    if (servers == null)
+                    {
+                        servers = new JArray();
+                        swagger["servers"] = servers;
+                    }
 
-                var request = context.Request;
-                var ocelotBaseUrl = $"{request.Scheme}://{request.Host}{pathBase}";
+                    var request = context.Request;
+                    var ocelotBaseUrl = $"{request.Scheme}://{request.Host}{pathBase}";
 
-                servers.Clear();
-                servers.Add(JObject.Parse($@"{{ 'url': '{ocelotBaseUrl}' }}"));
+                    servers.Clear();
+                    servers.Add(JObject.Parse($@"{{ 'url': '{ocelotBaseUrl}' }}"));
 
-                return swagger.ToString(Formatting.Indented);
-            };
-        });
+                    return swagger.ToString(Formatting.Indented);
+                };
+            });
+        }
 
         app.UseOcelot(ocelotPipelineConfig).Wait();
         return app;
