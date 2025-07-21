@@ -7,4 +7,6 @@ public class AppSetting
     public string Version { get; set; }
 
     public string Environment { get; set; }
+
+    public bool UseSwagger { get; set; }
 }
