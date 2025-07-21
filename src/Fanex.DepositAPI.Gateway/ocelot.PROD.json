@@ -10,10 +10,11 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_api_PROD",
+                    "Host": "licensee_deposit_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit API"
         },
 
         // Deposit Setting API
@@ -26,10 +27,11 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_setting_api_PROD",
+                    "Host": "licensee_deposit_setting_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit Setting API"
         },
         {
             "Key": "deposit-setting-api",
@@ -40,10 +42,11 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_setting_api_PROD",
+                    "Host": "licensee_deposit_setting_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit Setting API"
         },
 
         // Deposit Licensee API
@@ -59,10 +62,11 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_licensee_api_PROD",
+                    "Host": "licensee_deposit_licensee_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit Licensee API"
         },
 
         // Deposit Player API
@@ -77,10 +81,11 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_PROD",
+                    "Host": "licensee_deposit_player_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit Player API"
         },
         {
             "Key": "deposit-player-api",
@@ -93,10 +98,11 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_PROD",
+                    "Host": "licensee_deposit_player_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit Player API"
         },
         {
             "Key": "deposit-player-api",
@@ -109,10 +115,11 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_PROD",
+                    "Host": "licensee_deposit_player_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit Player API"
         },
         {
             "Key": "deposit-player-api",
@@ -125,13 +132,60 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_PROD",
+                    "Host": "licensee_deposit_player_api_KLPROD",
                     "Port": 5000
                 }
-            ]
+            ],
+            "SwaggerKey": "Deposit Player API"
         }
     ],
     "GlobalConfiguration": {
         "BaseUrl": "https://deposit-api-gw.oneops.net"
-    }
+    },
+    "SwaggerEndPoints": [
+        {
+            "Key": "Deposit API",
+            "TransformByOcelotConfig": true,
+            "Config": [
+                {
+                    "Name": "Deposit API",
+                    "Version": "v1",
+                    "Url": "http://licensee_deposit_api_KLPROD:5000/swagger/v1/swagger.json"
+                }
+            ]
+        },
+        {
+            "Key": "Deposit Setting API",
+            "TransformByOcelotConfig": true,
+            "Config": [
+                {
+                    "Name": "Deposit Setting API",
+                    "Version": "v1",
+                    "Url": "http://licensee_deposit_setting_api_KLPROD:5000/swagger/v1/swagger.json"
+                }
+            ]
+        },
+        {
+            "Key": "Deposit Player API",
+            "TransformByOcelotConfig": true,
+            "Config": [
+                {
+                    "Name": "Deposit Player API",
+                    "Version": "v1",
+                    "Url": "http://licensee_deposit_player_api_KLPROD:5000/swagger/v1/swagger.json"
+                }
+            ]
+        },
+        {
+            "Key": "Deposit Licensee API",
+            "TransformByOcelotConfig": true,
+            "Config": [
+                {
+                    "Name": "Deposit Licensee API",
+                    "Version": "v1",
+                    "Url": "http://licensee_deposit_licensee_api_KLPROD:5000/swagger/v1/swagger.json"
+                }
+            ]
+        }
+    ]
 }
