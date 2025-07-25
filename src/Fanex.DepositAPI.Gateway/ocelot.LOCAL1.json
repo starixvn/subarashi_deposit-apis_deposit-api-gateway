@@ -10,7 +10,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_api_LOCAL1",
+                    "Host": "licensee-deposit-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -27,7 +27,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_setting_api_LOCAL1",
+                    "Host": "licensee-deposit-setting-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -42,7 +42,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_setting_api_LOCAL1",
+                    "Host": "licensee-deposit-setting-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -62,7 +62,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_licensee_api_LOCAL1",
+                    "Host": "licensee-deposit-licensee-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -81,7 +81,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_LOCAL1",
+                    "Host": "licensee-deposit-player-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -98,7 +98,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_LOCAL1",
+                    "Host": "licensee-deposit-player-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -115,7 +115,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_LOCAL1",
+                    "Host": "licensee-deposit-player-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -132,7 +132,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "licensee_deposit_player_api_LOCAL1",
+                    "Host": "licensee-deposit-player-api-local1-service.licensee",
                     "Port": 5000
                 }
             ],
@@ -140,7 +140,7 @@
         }
     ],
     "GlobalConfiguration": {
-        "BaseUrl": "https://deposit-api-gw.nexdev.net/v1"
+        "BaseUrl": "https://deposit-api-gw.klc.nexdev.net/v1"
     },
     "SwaggerEndPoints": [
         {
@@ -150,7 +150,7 @@
                 {
                     "Name": "Deposit API",
                     "Version": "v1",
-                    "Url": "https://deposit-api1.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-api1.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         },
@@ -161,7 +161,7 @@
                 {
                     "Name": "Deposit Setting API",
                     "Version": "v1",
-                    "Url": "https://deposit-setting-api1.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-setting-api1.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         },
@@ -172,7 +172,7 @@
                 {
                     "Name": "Deposit Player API",
                     "Version": "v1",
-                    "Url": "https://deposit-player-api1.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-player-api1.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         },
@@ -183,7 +183,7 @@
                 {
                     "Name": "Deposit Licensee API",
                     "Version": "v1",
-                    "Url": "https://deposit-licensee-api1.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-licensee-api1.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         }

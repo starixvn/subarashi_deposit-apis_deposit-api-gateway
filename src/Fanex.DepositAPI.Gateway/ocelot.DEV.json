@@ -10,7 +10,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-api.nexdev.net",
+                    "Host": "deposit-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -27,7 +27,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-setting-api.nexdev.net",
+                    "Host": "deposit-setting-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -42,7 +42,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-setting-api.nexdev.net",
+                    "Host": "deposit-setting-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -62,7 +62,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-licensee-api.nexdev.net",
+                    "Host": "deposit-licensee-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -81,7 +81,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-player-api.nexdev.net",
+                    "Host": "deposit-player-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -98,7 +98,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-player-api.nexdev.net",
+                    "Host": "deposit-player-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -115,7 +115,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-player-api.nexdev.net",
+                    "Host": "deposit-player-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -132,7 +132,7 @@
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "deposit-player-api.nexdev.net",
+                    "Host": "deposit-player-api.klc.nexdev.net",
                     "Port": 443
                 }
             ],
@@ -150,7 +150,7 @@
                 {
                     "Name": "Deposit API",
                     "Version": "v1",
-                    "Url": "https://deposit-api.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-api.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         },
@@ -161,7 +161,7 @@
                 {
                     "Name": "Deposit Setting API",
                     "Version": "v1",
-                    "Url": "https://deposit-setting-api.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-setting-api.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         },
@@ -172,7 +172,7 @@
                 {
                     "Name": "Deposit Player API",
                     "Version": "v1",
-                    "Url": "https://deposit-player-api.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-player-api.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         },
@@ -183,7 +183,7 @@
                 {
                     "Name": "Deposit Licensee API",
                     "Version": "v1",
-                    "Url": "https://deposit-licensee-api.nexdev.net/swagger/v1/swagger.json"
+                    "Url": "https://deposit-licensee-api.klc.nexdev.net/swagger/v1/swagger.json"
                 }
             ]
         }
