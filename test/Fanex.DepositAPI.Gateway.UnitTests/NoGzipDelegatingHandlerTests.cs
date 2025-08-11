@@ -1,5 +1,6 @@
 namespace Fanex.DepositAPI.Gateway.UnitTests
 {
+    using System.Net;
     using System.Net.Http.Headers;
     using AutoFixture;
     using DelegatingHandlers;
@@ -91,7 +92,7 @@ namespace Fanex.DepositAPI.Gateway.UnitTests
             {
                 CapturedRequest = request;
                 WasCalled = true;
-                return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK));
+                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK));
             }
         }
     }

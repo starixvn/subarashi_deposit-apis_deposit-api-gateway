@@ -11,6 +11,7 @@ using ILogger = Logging.ILogger;
 
 public static class LoggingServiceConfiguration
 {
+    private const int DefaultResponseBodyLogLimit = 4096;
     public static IServiceCollection LoggingConfigure(this IServiceCollection services, IConfiguration configuration)
     {
         var sentrySetting = configuration.GetSection(SentrySetting.SettingName).Get<SentrySetting>();
@@ -47,7 +48,7 @@ public static class LoggingServiceConfiguration
             options.LoggingFields = HttpLoggingFields.All | HttpLoggingFields.RequestQuery;
             options.RequestHeaders.Add("sec-ch-ua");
             options.MediaTypeOptions.AddText("application/javascript");
-            options.ResponseBodyLogLimit = 4096;
+            options.ResponseBodyLogLimit = DefaultResponseBodyLogLimit;
             options.CombineLogs = true;
         });
 

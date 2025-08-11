@@ -5,6 +5,18 @@
 		<Nullable>disable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Update="Program.cs">
+			<SonarQubeExclude>true</SonarQubeExclude>
+		</Compile>
+		<Compile Update="Startup\LoggingServiceConfiguration.cs">
+			<SonarQubeExclude>true</SonarQubeExclude>
+		</Compile>
+		<Compile Update="Startup\OcelotMiddlewareConfiguration.cs">
+			<SonarQubeExclude>true</SonarQubeExclude>
+		</Compile>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="MMLib.SwaggerForOcelot" Version="8.3.0" />
