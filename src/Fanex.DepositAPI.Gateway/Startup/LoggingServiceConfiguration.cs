@@ -47,7 +47,6 @@ public static class LoggingServiceConfiguration
             options.LoggingFields = HttpLoggingFields.All | HttpLoggingFields.RequestQuery;
             options.RequestHeaders.Add("sec-ch-ua");
             options.MediaTypeOptions.AddText("application/javascript");
-            //options.RequestBodyLogLimit = 4096;
             options.ResponseBodyLogLimit = 4096;
             options.CombineLogs = true;
         });

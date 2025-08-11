@@ -65,7 +65,7 @@ public static class ErrorMessageUtils
             ["User Agent"] = request.Headers.UserAgent.ToString(),
             ["Content Type"] = request.ContentType,
             ["Content Length"] = request.ContentLength.HasValue ? request.ContentLength.Value.ToString() : "N/A",
-            ["Request Time"] = DateTime.UtcNow.ToString("o"),
+            ["Request Time"] = DateTimeOffset.UtcNow.ToString("o"),
             ["Headers"] = GetHeaderValues(request),
             ["Cookies"] = GetCookiesValues(request),
             ["Body"] = GetRawBodyStringAsync(request)
