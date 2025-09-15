@@ -5,6 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.DepositAPI.Gateway", "src\Fanex.DepositAPI.Gateway\Fanex.DepositAPI.Gateway.csproj", "{E8C99A32-8876-4C09-B150-CE6D717C3585}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2AFF13CD-D1A7-4AFC-A071-FFF36D6C318D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.DepositAPI.Gateway.UnitTests", "test\Fanex.DepositAPI.Gateway.UnitTests\Fanex.DepositAPI.Gateway.UnitTests.csproj", "{6591F243-3B6D-4588-B820-DC04C2EBFC90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{E8C99A32-8876-4C09-B150-CE6D717C3585}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8C99A32-8876-4C09-B150-CE6D717C3585}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8C99A32-8876-4C09-B150-CE6D717C3585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6591F243-3B6D-4588-B820-DC04C2EBFC90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6591F243-3B6D-4588-B820-DC04C2EBFC90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6591F243-3B6D-4588-B820-DC04C2EBFC90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6591F243-3B6D-4588-B820-DC04C2EBFC90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E8C99A32-8876-4C09-B150-CE6D717C3585} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6591F243-3B6D-4588-B820-DC04C2EBFC90} = {2AFF13CD-D1A7-4AFC-A071-FFF36D6C318D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {998B812B-501A-4B1D-8043-4242E61A991B}

@@ -78,7 +78,7 @@ try
         context => context.Request.Path.StartsWithSegments("/api"),
         config => config.UseHttpLogging().UseMiddleware<UMMiddleware>());
 
-    app.UseOcelot(builder.Configuration);
+    await app.UseOcelot(builder.Configuration);
 
     app.Run();
 }
